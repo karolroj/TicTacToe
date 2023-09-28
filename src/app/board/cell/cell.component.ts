@@ -15,7 +15,7 @@ export class CellComponent {
 
   markCell(event: any) {
     let cellInfo: CellInfo;
-    let state = this.turn === 0 ? State.X : State.O;
+    let state = this.turn === 0 ? State.O : State.X;
     switch (this.id) {
       case 0:
         cellInfo = new CellInfo(0, 0, state);
@@ -48,10 +48,10 @@ export class CellComponent {
         throw 'Index out of array.';
     }
     if (this.turn === 0) {
-      event.innerHTML = 'X';
+      event.innerHTML = 'O';
       this.turnChange.emit(1);
     } else {
-      event.innerHTML = 'O';
+      event.innerHTML = 'X';
       this.turnChange.emit(0);
     }
     event.disabled = true;

@@ -1,6 +1,6 @@
 import { CellInfo } from './cell/models/cellInfo';
 import { Board } from './models/board';
-import { AfterViewInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { State } from './models/state';
 
 @Component({
@@ -9,12 +9,11 @@ import { State } from './models/state';
   styleUrls: ['./board.component.css'],
 })
 export class BoardComponent {
-  board: Board;
+  board: Board = new Board();
   currentTurn: number = 0;
-  private boardSize: number = 3;
-  constructor() {
-    this.board = new Board();
-  }
+  playerHasWon: boolean = false;
+  boardSize: number = 3;
+  state = State;
 
   changeTurn(turn: number) {
     this.currentTurn = turn;
@@ -25,17 +24,17 @@ export class BoardComponent {
     this.checkForWin(cellInfo);
   }
 
-  private checkForWin(cellInfo: CellInfo) {
+  checkForWin(cellInfo: CellInfo) {
     this.checkColumns(cellInfo.positionY, cellInfo.state);
     this.checkRows(cellInfo.positionX, cellInfo.state);
-    if(cellInfo.positionX == cellInfo.positionY)
+    if (cellInfo.positionX == cellInfo.positionY)
       this.checkDiagonal(cellInfo.state);
 
-    if(cellInfo.positionX + cellInfo.positionY == this.boardSize - 1)
+    if (cellInfo.positionX + cellInfo.positionY == this.boardSize - 1)
       this.checkAntiDiagonal(cellInfo.state);
   }
 
-  checkAntiDiagonal(state : State) {
+  checkAntiDiagonal(state: State) {
     for (let i = 0; i < this.boardSize; i++) {
       if (this.board.Cells[i][this.boardSize - 1 - i] !== state) {
         return;
@@ -44,7 +43,7 @@ export class BoardComponent {
     }
   }
 
-  private checkDiagonal(state : State) {
+  checkDiagonal(state: State) {
     for (let i = 0; i < this.boardSize; i++) {
       if (this.board.Cells[i][i] !== state) {
         return;
@@ -53,7 +52,7 @@ export class BoardComponent {
     }
   }
 
-  private checkRows(x: number, state: State) {
+  checkRows(x: number, state: State) {
     for (let i = 0; i < this.boardSize; i++) {
       if (this.board.Cells[x][i] !== state) {
         return;
@@ -62,7 +61,7 @@ export class BoardComponent {
     }
   }
 
-  private checkColumns(y: number, state: State) {
+  checkColumns(y: number, state: State) {
     for (let i = 0; i < this.boardSize; i++) {
       if (this.board.Cells[i][y] !== state) {
         return;
@@ -71,10 +70,10 @@ export class BoardComponent {
     }
   }
 
-  private callWinner(i: number) {
+  callWinner(i: number) {
     if (i == this.boardSize - 1) {
-
-      alert('Winner');
+      alert(`The winner: ${this.currentTurn === 0 ? 'X' : 'O'}`);
+      this.playerHasWon = true;
     }
   }
 }

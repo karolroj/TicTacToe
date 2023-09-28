@@ -1,5 +1,6 @@
 export enum State{
   Blank,
   X,
-  O
+  O,
+  Win
 }

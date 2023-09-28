@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, destroyPlatform } from '@angular/core';
+import { BoardComponent } from './board/board.component';
+import { Board } from './board/models/board';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Battleship';
+  title = 'TicTacToe';
+
+  reinitializeBoardComponent(){
+    window.location.reload();
+  }
 }
