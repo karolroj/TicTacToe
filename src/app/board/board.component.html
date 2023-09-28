@@ -1,19 +1,8 @@
 <div id="board" [ngClass]="{ 'disable-div': playerHasWon === true }">
   <div>
     <app-cell
-      [id]="0"
-      [turn]="currentTurn"
-      (turnChange)="changeTurn($event)"
-      (cellInfo)="fillCell($event)"
-    ></app-cell>
-    <app-cell
-      [id]="1"
-      [turn]="currentTurn"
-      (turnChange)="changeTurn($event)"
-      (cellInfo)="fillCell($event)"
-    ></app-cell>
-    <app-cell
-      [id]="2"
+      *ngFor="let cell of board.Cells; let i = index"
+      [id]="i"
       [turn]="currentTurn"
       (turnChange)="changeTurn($event)"
       (cellInfo)="fillCell($event)"
@@ -21,19 +10,8 @@
   </div>
   <div>
     <app-cell
-      [id]="3"
-      [turn]="currentTurn"
-      (turnChange)="changeTurn($event)"
-      (cellInfo)="fillCell($event)"
-    ></app-cell>
-    <app-cell
-      [id]="4"
-      [turn]="currentTurn"
-      (turnChange)="changeTurn($event)"
-      (cellInfo)="fillCell($event)"
-    ></app-cell>
-    <app-cell
-      [id]="5"
+      *ngFor="let cell of board.Cells; let i = index"
+      [id]="i + 3"
       [turn]="currentTurn"
       (turnChange)="changeTurn($event)"
       (cellInfo)="fillCell($event)"
@@ -41,19 +19,8 @@
   </div>
   <div>
     <app-cell
-      [id]="6"
-      [turn]="currentTurn"
-      (turnChange)="changeTurn($event)"
-      (cellInfo)="fillCell($event)"
-    ></app-cell>
-    <app-cell
-      [id]="7"
-      [turn]="currentTurn"
-      (turnChange)="changeTurn($event)"
-      (cellInfo)="fillCell($event)"
-    ></app-cell>
-    <app-cell
-      [id]="8"
+      *ngFor="let cell of board.Cells; let i = index"
+      [id]="i + 6"
       [turn]="currentTurn"
       (turnChange)="changeTurn($event)"
       (cellInfo)="fillCell($event)"
